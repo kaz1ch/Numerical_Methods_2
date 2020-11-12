@@ -33,12 +33,14 @@ namespace Numerical_Methods_2
             int i = 1, j = 1;
             while (i <= k)
             {
+                j = 1;
                 while (j <= k)
                 {
-                    if (i != j) FuncMult *= x_array[i - 1] - x_array[j - 1];
+                    if (j != i) FuncMult *= x_array[i - 1] - x_array[j - 1];
                     j++;
                 }
                 FuncSum += f(x_array[i - 1]) / FuncMult;
+                FuncMult = 1;
                 i++;
             }
             return FuncSum;
@@ -70,8 +72,6 @@ namespace Numerical_Methods_2
                     case 5:
                         FuncSum += f_const(5) * (x - x_array[0]) * (x - x_array[1]) * (x - x_array[2]) * (x - x_array[3]);
                         break;
-                    default:
-                        break;
                 }
                 i++;
             }
@@ -81,7 +81,7 @@ namespace Numerical_Methods_2
         private void button1_Click(object sender, EventArgs e)
         {
             double[] x_array = new double[5] { h / 2, h * 3 / 2, h * 5 / 2, h * 9 / 2, h * 13 / 2 };
-            double a = 0, b = 2 * Pi, step = 0.01;
+            double a = 0, b = 5 * Pi, step = 0.01;
             double x = a + step, y;
             this.chart1.Series[0].Points.Clear();
 
